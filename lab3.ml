@@ -72,10 +72,10 @@ Exercise 2B:
 Implement a function `add_point_recd` to add two points of type
 `point_recd` and returning a `point_recd` as well.
 ......................................................................*)
-
+(* point rec *)
 let add_point_recd (p1 : point_recd) (p2 : point_recd) : point_recd =
-  {p1.x1 + p2.x2 ; p1.y1 + p2.y2}
-  ;;
+let {x = x1; y = y1}, {x = x2; y = y2} = p1, p2
+in  {x = x1 + x2; y = y1 + y2} ;;
 
 (* Recall the dot product from Lab 2. The dot product of two points
 `x1, y1` and `x2, y2` is the sum of the products of their x and y
@@ -263,7 +263,7 @@ Now implement the function yourself (without using `List.partition`,
 though other `List` module functions may be useful).
 ......................................................................*)
 
-let rec partition (condition : 'a -> bool) (lst : 'a list) : 'a list * 'a list = 
+let rec partition (condition : 'a -> bool) (lst : 'a list) : 'a list * 'a list =
   match lst with
   | [] -> [], []
   | hd :: tl -> let yeses, noes =  partition condition tl in
@@ -313,5 +313,5 @@ Can you think of a reason that the `apply` function might in fact be
 useful?
 ......................................................................*)
 
-let apply =
-  fun _ -> failwith "apply not implemented" ;;
+let apply (func : 'arg -> 'result) (arg : 'arg) : 'result =
+  func arg ;;
